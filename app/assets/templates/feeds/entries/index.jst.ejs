@@ -1,7 +1,7 @@
 <ul>
 <% entries.each(function(entry, index){%>
 	<li>
-		<a href="entries/<%= entry.id %>">
+		<a href="#/feeds/<%= entry.get("feed_id") %>/entries/<%= entry.id %>">
 			<%= entry.get("title") %>
 		</a>
 	</li>

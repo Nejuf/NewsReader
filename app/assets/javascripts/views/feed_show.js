@@ -6,8 +6,8 @@ NewsReader.Views.FeedShow = Backbone.View.extend({
 	},
 
 	initialize: function(options) {
-		this.entriesCollection = new NewsReader.Collections.Entries({ feed: this.model });
-		this.entriesIndexView = new NewsReader.Views.EntryIndex({ collection: this.entriesCollection });
+		this.model.entries = new NewsReader.Collections.Entries({ feed: this.model });
+		this.entriesIndexView = new NewsReader.Views.EntryIndex({ collection: this.model.entries });
 		this.reloadEntries();
 	},
 
@@ -22,7 +22,7 @@ NewsReader.Views.FeedShow = Backbone.View.extend({
 
 	reloadEntries: function(event) {
 		var that = this;
-		this.entriesCollection.fetch({
+		this.model.entries.fetch({
 			success: function(collection, response, options) {
 				that.render();
 			}
@@ -31,7 +31,8 @@ NewsReader.Views.FeedShow = Backbone.View.extend({
 
 	remove: function(){
 		this.entriesIndexView.remove();
-		this.protototype.remove();
+		// this.protototype.remove();
+		this.stopListening();
 	},
 
 });

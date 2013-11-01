@@ -30,8 +30,8 @@ NewsReader.Routers.AppRouter = Backbone.Router.extend({
 
 	feedShow: function(id) {
 		if(!this.feedsCollection) return;
-		var model = this.feedsCollection.get(id);
-		var feedShowView = new NewsReader.Views.FeedShow({ model: model });
+		var feed = this.feedsCollection.get(id);
+		var feedShowView = new NewsReader.Views.FeedShow({ model: feed });
 		this._swapView(feedShowView);
 	},
 
@@ -40,7 +40,11 @@ NewsReader.Routers.AppRouter = Backbone.Router.extend({
 	},
 
 	entryShow: function(feed_id, id) {
-
+		var feed = this.feedsCollection.get(feed_id);
+		debugger
+		var entry = feed.entries.get(id);
+		var entryShowView = new NewsReader.Views.EntryShow({ model: entry });
+		this._swapView(entryShowView);
 	},
 
 	_swapView: function(newView) {
