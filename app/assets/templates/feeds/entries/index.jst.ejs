@@ -1,0 +1,9 @@
+<ul>
+<% entries.each(function(entry, index){%>
+	<li>
+		<a href="entries/<%= entry.id %>">
+			<%= entry.get("title") %>
+		</a>
+	</li>
+<% }); %>
+</ul>
