@@ -41,7 +41,6 @@ NewsReader.Routers.AppRouter = Backbone.Router.extend({
 
 	entryShow: function(feed_id, id) {
 		var feed = this.feedsCollection.get(feed_id);
-		debugger
 		var entry = feed.entries.get(id);
 		var entryShowView = new NewsReader.Views.EntryShow({ model: entry });
 		this._swapView(entryShowView);

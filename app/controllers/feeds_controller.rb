@@ -1,8 +1,9 @@
 class FeedsController < ApplicationController
+
   def index
     respond_to do |format|
       format.html { render :index }
-      format.json { render :json => Feed.all }
+      format.json { render :json => Feed.all, include: :entries }
     end
   end
 
@@ -10,7 +11,8 @@ class FeedsController < ApplicationController
     feed = Feed.find_or_create_by_url(params[:feed][:url])
 
     if feed
-      if(feed.updated_at < Time.now - 120)
+      if(feed.entries.length == 0 ||
+          feed.entries.first.updated_at < Time.now - 120)
         feed.reload
       end
       render :json => feed

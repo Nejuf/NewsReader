@@ -6,7 +6,6 @@ NewsReader.Views.FeedShow = Backbone.View.extend({
 	},
 
 	initialize: function(options) {
-		this.model.entries = new NewsReader.Collections.Entries({ feed: this.model });
 		this.entriesIndexView = new NewsReader.Views.EntryIndex({ collection: this.model.entries });
 		this.reloadEntries();
 	},

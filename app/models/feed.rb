@@ -3,6 +3,8 @@ class Feed < ActiveRecord::Base
 
   has_many :entries, :dependent => :destroy
 
+  includes :entries
+
   def self.find_or_create_by_url(url)
     feed = Feed.find_by_url(url)
     return feed if feed
